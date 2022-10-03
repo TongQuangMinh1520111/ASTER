@@ -16,9 +16,11 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
 }
+
 body p {
   font-size: 16px;
 }
+
 details,
 menu,
 figcaption,
@@ -311,7 +313,7 @@ Variables
   margin-bottom: calc(-1 * var(--spacing));
 }
 
-.d_flex > * {
+.d_flex>* {
   margin-right: var(--spacing);
   margin-bottom: var(--spacing);
   width: calc((100% / var(--column)) - var(--spacing));
@@ -362,6 +364,7 @@ Header
   align-items: center;
   justify-content: space-between;
   position: fixed;
+  z-index: 99;
   top: 35px;
   left: 0;
   padding: 0 45px;
@@ -369,17 +372,24 @@ Header
   text-align: left;
 }
 
-#header #top a span {
+#header #top a span:nth-child(2) {
   display: none;
 }
 
-#header #top a span.active {
+#header.active #top a span:nth-child(1) {
+  display: none;
+}
+
+#header.active #top a span:nth-child(2) {
   display: block;
 }
 
 #header #gnavi {
   display: flex;
   align-items: center;
+}
+
+#header #gnavi .translate {
   margin-right: 100px;
 }
 
@@ -408,6 +418,10 @@ Header
   color: #fff;
 }
 
+#header.active #gnavi .translate a.active {
+  color: #000;
+}
+
 /* ========== */
 .hamburger {
   width: 40px;
@@ -416,7 +430,6 @@ Header
   cursor: pointer;
   display: inline-block;
   z-index: 100;
-  margin-left: 40px;
 }
 
 .hamburger span {
@@ -429,6 +442,10 @@ Header
   opacity: 1;
   width: 100%;
   left: 0;
+}
+
+#header.active .hamburger span {
+  background: #000;
 }
 
 .hamburger span:nth-child(1) {
@@ -444,7 +461,7 @@ Header
 }
 
 .hamburger.active span:nth-child(1) {
-  top: 1px;
+  top: 12px;
   transform: rotate(135deg);
 }
 
@@ -467,9 +484,11 @@ Contents
   line-height: 1;
   margin-bottom: 40px;
 }
+
 .link-more {
   text-align: right;
 }
+
 .link-more a {
   display: inline-flex;
   align-items: center;
@@ -480,6 +499,7 @@ Contents
   position: relative;
   transition: all 0.25s ease;
 }
+
 .link-more a::after {
   content: "";
   width: 8px;
@@ -491,6 +511,7 @@ Contents
   top: 2px;
   margin-left: 7px;
 }
+
 .gr_tag a {
   display: inline-block;
   color: #ff6666;
@@ -499,9 +520,11 @@ Contents
   text-decoration: underline;
   transition: all 0.25s ease;
 }
+
 .gr_tag a:not(:last-child) {
   margin-right: 10px;
 }
+
 #h_main {
   height: 100vh;
   display: flex;
@@ -512,14 +535,18 @@ Contents
   color: #fff;
   padding: 70px 0;
 }
+
 #h_main .main_cont {
   max-width: 550px;
 }
+
 #h_main .inner h2 {
   font-family: var(--en-font-family);
   font-size: 60px;
+  line-height: 1.3;
   margin-bottom: 80px;
 }
+
 #h_main .inner .main_txt {
   font-size: 16px;
 }
@@ -528,18 +555,22 @@ Contents
   padding-top: 250px;
   margin-bottom: 200px;
 }
+
 #h_business .business_cont {
   display: flex;
   justify-content: space-between;
 }
+
 #h_business .business_cont .section {
   max-width: 330px;
   margin-right: 40px;
   flex-shrink: 0;
 }
+
 #h_business .business_cont .section p {
   font-weight: 700;
 }
+
 #h_business .business_cont .business_list {
   width: 100%;
   max-width: 715px;
@@ -547,75 +578,88 @@ Contents
   flex-wrap: wrap;
   margin: 0 -17px -30px;
 }
+
 #h_business .business_cont .business_list li {
   width: calc((100% - 102px) / 3);
   margin: 0 17px 30px;
 }
+#h_business .business_cont .business_list li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 #h_business .link-more {
   margin-top: 85px;
 }
+
 #h_topics {
   margin-bottom: 200px;
 }
+
 #h_topics .topics_list {
   display: flex;
   justify-content: space-between;
 }
+
 #h_topics .topics_list li {
   width: calc(50% - 25px);
   display: flex;
   justify-content: space-between;
 }
+
 #h_topics .topics_list figure {
   width: 100%;
   max-width: 200px;
   flex-shrink: 0;
+  line-height: 0;
   margin-right: 35px;
 }
+
 #h_topics .topics_list .topics_txt {
-  display: -webkit-box;
-  height: calc(1em * 4 * 1.875);
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 4;
   font-weight: 700;
   margin-bottom: 25px;
 }
+
 #h_topics .topics_list .gr_tag {
   display: inline-flex;
   flex-direction: column;
 }
+
 #h_topics .link-more {
   margin-top: 100px;
 }
+
 #h_works {
   margin-bottom: 200px;
 }
+
 #h_works .works_list {
   display: flex;
   flex-wrap: wrap;
   margin: 0 -27px -30px;
 }
+
 #h_works .works_list li {
   width: calc((100% - 165px) / 3);
   max-width: 330px;
   margin: 0 27px 30px;
 }
+
 #h_works .works_list .card {
   width: 100%;
-  height: 100%;
-  min-height: 200px;
+ height: 200px;
   position: relative;
   display: flex;
   align-items: flex-end;
   padding: 25px 20px;
   margin-bottom: 15px;
 }
+
 #h_works .works_list .card h4 {
   font-size: 16px;
   color: #fff;
 }
+
 #h_works .works_list .card figure {
   width: 100%;
   height: 100%;
@@ -624,18 +668,22 @@ Contents
   left: 0;
   z-index: -1;
 }
+
 #h_works .works_list .card figure img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 #h_aster .aster_list {
   display: flex;
   justify-content: space-between;
 }
+
 #h_aster .aster_list li {
-  max-width: calc(50% - 50px);
+  width: calc(50% - 50px);
 }
+
 /* ------------------------------------------------------
 Footer
 ------------------------------------------------------ */
@@ -644,6 +692,7 @@ Footer
   padding: 50px 0 40px;
   margin-top: 250px;
 }
+
 #footer .f_txt {
   color: #fff;
   font-size: 18px;
@@ -651,19 +700,28 @@ Footer
   text-decoration: underline;
   margin-bottom: 60px;
 }
+
+#footer .f_txt a {
+  color: #fff;
+}
+
 #footer .f_logo {
   margin-bottom: 80px;
 }
+
 #footer .f_logo a {
   transition: all 0.25s ease;
 }
+
 #footer .f_link {
   display: flex;
   margin-bottom: 15px;
 }
+
 #footer .f_link li:not(:last-child) {
   margin-right: 10px;
 }
+
 #footer .f_link li a {
   display: inline-block;
   color: #fff;
@@ -671,26 +729,25 @@ Footer
   font-weight: 500;
   transition: all 0.25s ease;
 }
+
 #footer .f_link li:not(:last-child) a {
   padding-right: 10px;
   border-right: 1px solid #fff;
 }
+
 #footer address {
   color: #fff;
   font-family: var(--en-font-family);
   font-size: 14px;
   font-style: normal;
-  
+
 }
 
 /* MOZZILLA CSS */
-@-moz-document url-prefix() {
-}
+@-moz-document url-prefix() {}
 
 /* IE CSS */
-@media screen\0 {
-}
+@media screen\0 {}
 
 /* EDGE 12+ CSS */
-@supports (-ms-ime-align: auto) {
-}
+@supports (-ms-ime-align: auto) {}
